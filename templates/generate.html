@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Generate Images - KD-GAN{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Generate Images from Text</h1>
+
+<div class="card">
+    <form id="generate-form" action="{{ url_for('generate') }}" method="post">
+        <div class="form-group">
+            <label for="text-input">Enter a detailed description of the image you want to generate</label>
+            <textarea 
+                id="text-input" 
+                name="text" 
+                placeholder="A beautiful sunset over the mountains with a lake in the foreground..." 
+                required
+            >{{ text if text else '' }}</textarea>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="generate-btn">Generate Image</button>
+        </div>
+    </form>
+</div>
+
+<div class="card tips-card">
+    <h3>Tips for Better Results</h3>
+    <ul>
+        <li>Be specific and detailed in your descriptions</li>
+        <li>Include information about colors, lighting, and composition</li>
+        <li>Specify the style you want (e.g., photorealistic, cartoon, painting)</li>
+        <li>Mention the main subject and background elements</li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('generate-form').addEventListener('submit', function() {
+        document.getElementById('generate-btn').disabled = true;
+        document.getElementById('generate-btn').textContent = 'Generating...';
+    });
+</script>
+{% endblock %}

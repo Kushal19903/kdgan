@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}KD-GAN: Text to Image Synthesis{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Knowledge Driven GAN for Text to Image Synthesis</h1>
+    <p>
+        Welcome to KD-GAN, a state-of-the-art text-to-image synthesis system that leverages the power of BERT language model
+        and Generative Adversarial Networks to create high-quality images from textual descriptions.
+    </p>
+    <a href="{{ url_for('generate') }}" class="btn btn-primary">Try It Now</a>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h2>BERT Integration</h2>
+        <p>
+            Our model uses BERT to understand the semantic meaning
+            of your text descriptions, enabling more accurate and contextually relevant image generation.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <h2>Knowledge Driven</h2>
+        <p>
+            Unlike traditional GANs, our approach incorporates knowledge from pre-trained language models to enhance
+            the quality and semantic relevance of generated images.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <h2>High Quality Results</h2>
+        <p>
+            The KD-GAN architecture produces high-resolution, detailed images that accurately reflect the input text
+            descriptions, with improved visual quality compared to standard text-to-image models.
+        </p>
+    </div>
+</section>
+{% endblock %}

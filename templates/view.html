@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}View Generated Image - KD-GAN{% endblock %}
+
+{% block content %}
+<div class="card result-card">
+    <h2>Generated Image</h2>
+    <div class="image-container">
+        <img src="{{ image_url }}" alt="{{ caption }}">
+    </div>
+    <div class="image-description">
+        <strong>Description:</strong> {{ caption }}
+    </div>
+    <div class="image-actions">
+        <a href="{{ image_url }}" download="{{ filename }}" class="btn btn-secondary">Download Image</a>
+        <a href="{{ url_for('generate') }}" class="btn btn-primary">Generate Another</a>
+    </div>
+</div>
+{% endblock %}

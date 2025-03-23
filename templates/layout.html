@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}KD-GAN: Text to Image Synthesis{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">KD-GAN</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" {% if request.path == url_for('index') %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ url_for('generate') }}" {% if request.path == url_for('generate') %}class="active"{% endif %}>Generate</a></li>
+                    <li><a href="{{ url_for('gallery') }}" {% if request.path == url_for('gallery') %}class="active"{% endif %}>Gallery</a></li>
+                    <li><a href="{{ url_for('about') }}" {% if request.path == url_for('about') %}class="active"{% endif %}>About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% if demo_mode %}
+    <div class="container">
+        <div class="alert alert-warning">
+            Running in DEMO MODE. The model is not loaded, and generated images are placeholders.
+        </div>
+    </div>
+    {% endif %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ year }} KD-GAN: Knowledge Driven GAN for Text to Image Synthesis</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

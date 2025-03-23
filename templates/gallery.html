@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Gallery - KD-GAN{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Image Gallery</h1>
+
+{% if images %}
+<div class="gallery-grid">
+    {% for image in images %}
+    <div class="image-card">
+        <a href="{{ url_for('view_image', filename=image.filename) }}">
+            <div class="image-container">
+                <img src="{{ image.url }}" alt="{{ image.caption }}">
+                {% if image.caption %}
+                <div class="image-caption">{{ image.caption[:50] }}{% if image.caption|length > 50 %}...{% endif %}</div>
+                {% endif %}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No images have been generated yet. <a href="{{ url_for('generate') }}">Generate your first image</a>.</p>
+</div>
+{% endif %}
+{% endblock %}
